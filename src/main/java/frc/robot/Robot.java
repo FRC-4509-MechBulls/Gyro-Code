@@ -32,9 +32,8 @@ public class Robot extends TimedRobot {
   AHRS ahrs = new AHRS(SPI.Port.kMXP);
   public double currentAngle;
   private double goalAngle = 10.0;
-  private boolean isDone = false;
-  private double speed = 0.5;
-  private double tolerance = 5;
+  private double speed = 0.45;
+  private double tolerance = 2;
 
   // // Channels for the wheels
   public static final int leftChannel = 3;
@@ -120,7 +119,6 @@ public class Robot extends TimedRobot {
     if((Math.abs(goalAngle - currentAngle) < tolerance)){  
       //if within tolerance, the robot will stop
       drivetrain.arcadeDrive(0, 0);
-      isDone = true;
     } else if(currentAngle < goalAngle) {  //If left of target angle turn clockwise
       drivetrain.arcadeDrive(0, -speed);  
     } else if(currentAngle > goalAngle){  //If right of target angle turn counterclockwise
